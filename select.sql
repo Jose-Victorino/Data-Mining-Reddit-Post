@@ -3,7 +3,7 @@ SELECT * FROM dim_comment;
 SELECT * FROM dim_posts;
 SELECT * FROM dim_date;
 SELECT * FROM dim_topic ORDER BY topic_category;
-SELECT * FROM fact_table;
+SELECT * FROM fact_table ;
 */
 
 -- topic category comment count
@@ -20,7 +20,7 @@ GROUP BY fcc.topic_category
 ORDER BY comment_count;
 
 -- total comments per day
-SELECT d.month, d.weekday, COUNT(ft.comment_id) AS total_comments
+SELECT d.month, d.weekday, COUNT(*) AS total_comments
 FROM fact_table ft
 JOIN dim_date d ON ft.date_id = d.date_id
 GROUP BY ROLLUP (d.month, d.weekday)
@@ -34,16 +34,16 @@ GROUP BY t.flair
 ORDER BY avg_score DESC;
 
 -- sentiment totals
-SELECT COUNT(sentiment) AS total, sentiment
+SELECT COUNT(sentiment_label) AS total, sentiment_label
 FROM fact_table
-GROUP BY sentiment;
+GROUP BY sentiment_label;
 
 -- sentiment comment count per topic
-SELECT t.flair AS topic, ft.sentiment, COUNT(*) AS num_comments
+SELECT t.flair AS topic, ft.sentiment_label, COUNT(*) AS num_comments
 FROM fact_table ft
 JOIN dim_topic t ON ft.topic_id = t.topic_id
-GROUP BY t.flair, ft.sentiment
-ORDER BY t.flair, ft.sentiment;
+GROUP BY t.flair, ft.sentiment_label
+ORDER BY t.flair, ft.sentiment_label;
 
 -- weekly activity
 SELECT d.weekday, COUNT(ft.comment_id) AS total_comments
@@ -67,8 +67,8 @@ GROUP BY cluster_id
 ORDER BY total_comments DESC;
 
 -- Sentiments over the week
-SELECT d.month, d.weekday, ft.sentiment, COUNT(*) AS count
+SELECT d.month, d.weekday, ft.sentiment_label, COUNT(*) AS count
 FROM fact_table ft
 JOIN dim_date d ON ft.date_id = d.date_id
-GROUP BY d.month, d.weekday, ft.sentiment
+GROUP BY d.month, d.weekday, ft.sentiment_label
 ORDER BY d.month, d.weekday;

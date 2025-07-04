@@ -216,11 +216,11 @@ print("JSON data successfully loaded into PostgreSQL.")
 # - Data Warehouse Implementation
 # DONE 1. Star schema with fact table for comment activity and dimensions for subreddit, user metadata, date, topic category
 # DONE 2. Reddit API via Python (PRAW), preprocessing with pandas, loading into PostgreSQL.
-# 3. OLAP Queries. Analyze user behavior by subreddit/topic; trends over time using `GROUP BY`, `ROLLUP` on date hierarchy.
+# PEND 3. OLAP Queries. Analyze user behavior by subreddit/topic; trends over time using `GROUP BY`, `ROLLUP` on date hierarchy.
 
 # Data Mining Tasks:
-# DONE - Classification: TF-IDF + Decision Tree to classify comments into positive, negative, and neutral sentiment. Joy, Sadness, Anger, Neutral, Fear
-# DONE - Clustering: Apply k-Means to group discussions by theme (e.g., anxiety, depression, therapy).
+# PEND - Classification: TF-IDF + Decision Tree to classify comments into positive, negative, and neutral sentiment. Joy, Sadness, Anger, Neutral, Fear
+# PEND - Clustering: Apply k-Means to group discussions by theme (e.g., anxiety, depression, therapy).
 # - Association Rule Mining: find co-occurrence between keywords/topics.
 # DONE - Target Dataset: At least 5,000 Reddit comments using Reddit API from subreddits like r/mentalhealth, r/anxiety, r/depression.
 
