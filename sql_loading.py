@@ -19,7 +19,7 @@ stop_words = stopwords.words('english')
 vectorizer = TfidfVectorizer(
   max_features=5000,
   stop_words=stop_words,
-  ngram_range=(1,2)  # Use unigrams and bigrams
+  ngram_range=(1,2)
 )
 
 # TF-IDF Vectorization
@@ -133,26 +133,6 @@ def get_or_create_date_id(dt):
     cur.execute("SELECT date_id FROM dim_date WHERE full_date = %s;", (dt.date(),))
     result = cur.fetchone()
   return result[0]
-
-# Gather all post texts for clustering
-post_texts = []
-post_ids = []
-for post in data:
-  text = (post.get('title', '') or '') + ' ' + (post.get('selftext', '') or '')
-  post_texts.append(text)
-  post_ids.append(post['post_id'])
-
-# Vectorize post texts
-vectorizer = TfidfVectorizer(max_features = 5000)
-X_posts = vectorizer.fit_transform(post_texts)
-
-# k-means clustering
-k = 3  # (anxiety, depression, therapy)
-kmeans = KMeans(n_clusters = k, random_state = 42)
-cluster_ids = kmeans.fit_predict(X_posts)
-
-# Map post_id to cluster_id
-post_cluster_map = dict(zip(post_ids, cluster_ids))
 
 # Gather all comment texts for clustering
 comment_texts = []

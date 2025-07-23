@@ -63,7 +63,5 @@ CREATE TABLE IF NOT EXISTS fact_table (
   is_submitter BOOLEAN,         -- dim_comment.is_submitter
   comment_score INT,            -- dim_comment.score
   comment_length INT,           -- length of the comment
-  sentiment_score FLOAT,        -- positive, negative, neutral
-  sentiment_label TEXT,         -- positive, negative, neutral
   cluster_id INT                -- from k-means
 );

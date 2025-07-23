@@ -3,9 +3,8 @@ SELECT * FROM dim_comment;
 SELECT * FROM dim_posts;
 SELECT * FROM dim_date;
 SELECT * FROM dim_topic ORDER BY topic_category;
-SELECT * FROM fact_table ;
+SELECT * FROM fact_table;
 */
-
 -- topic category comment count
 SELECT fcc.topic_category, SUM(fcc.comment_count) AS comment_count, STRING_AGG(fcc.flair, ', ') AS flairs
 FROM (
