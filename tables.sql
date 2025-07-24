@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS dim_topic CASCADE;
 -- TOPIC CATEGORY
 CREATE table if not EXISTS dim_topic(
   topic_id SERIAL PRIMARY KEY,
-  topic_category TEXT,
+  topic_label TEXT,
   flair TEXT UNIQUE,
   keywords TEXT
 );
@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS fact_table (
   topic_id INT REFERENCES dim_topic(topic_id),
   date_id INT REFERENCES dim_date(date_id),
 
-  is_submitter BOOLEAN,         -- dim_comment.is_submitter
-  comment_score INT,            -- dim_comment.score
-  comment_length INT,           -- length of the comment
-  cluster_id INT                -- from k-means
+  is_submitter BOOLEAN,
+  comment_score INT,
+  comment_length INT,
+  topic_classification TEXT
 );
